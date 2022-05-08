@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main\dllmain.cpp" />
+    <ClCompile Include="Main\Utilities\Console\Logging.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Includes\MainIncludes.h" />
+    <ClInclude Include="Main\Utilities\Console\Logging.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

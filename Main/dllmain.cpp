@@ -1,9 +1,30 @@
 #include "Includes/MainIncludes.h"
 #include <thread>
 
+// Project Includes
+
+#include "Utilities/Console/Logging.h"
+
 DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 	try {
-		MessageBoxA(0, "Injected!", "Seismic", 0);
+		while (!GetModuleHandleA("serverbrowser.dll"))
+			Sleep(200);
+
+		// Console Setup
+		if (!Console::Attach("Seismic Developer Console"))
+			throw std::runtime_error("Failed to alloc console");
+
+		Console::Print("Starting Phase", "Console Attached, Welcome!");
+
+		// Interfaces Setup
+		Console::Print("Setting up Phase", "Setting Up Interfaces");
+		//if (Interfaces::Setup())
+		//	Console::Print("Setting up Phase", "Interfaces Setup Successful");
+
+		// Netvars Setup
+		//Console::Print("Setting up Phase", "Setting Up Netvars");
+		//if (Netvars::Setup())
+		//	Console::Print("Setting up Phase", "Netvars Setup Successful");
 	}
 	catch (const std::exception& error) {
 		FreeLibraryAndExitThread(static_cast<HMODULE>(lpParameter), EXIT_FAILURE);
@@ -14,7 +35,7 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 DWORD WINAPI OnDllDetach(LPVOID lpParameter) {
 	while (!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	MessageBoxA(0, "Unloaded!", "Seismic", 0);
+	Console::Detach();
 	FreeLibraryAndExitThread((HMODULE)lpParameter, EXIT_SUCCESS);
 }
 
