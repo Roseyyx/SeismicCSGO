@@ -3,6 +3,7 @@
 
 // Project Includes
 
+#include "Setup/Interfaces/Interfaces.h"
 #include "Utilities/Console/Logging.h"
 
 DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
@@ -14,12 +15,12 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 		if (!Console::Attach("Seismic Developer Console"))
 			throw std::runtime_error("Failed to alloc console");
 
-		Console::Print("Starting Phase", "Console Attached, Welcome!");
+		Console::Print("Starting Phase", "Console Attached, Welcome [user]!");
 
 		// Interfaces Setup
 		Console::Print("Setting up Phase", "Setting Up Interfaces");
-		//if (Interfaces::Setup())
-		//	Console::Print("Setting up Phase", "Interfaces Setup Successful");
+		if (Interfaces::Setup())
+			Console::Print("Setting up Phase", "Interfaces Setup Successful");
 
 		// Netvars Setup
 		//Console::Print("Setting up Phase", "Setting Up Netvars");

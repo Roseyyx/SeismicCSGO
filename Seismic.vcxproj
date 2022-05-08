@@ -20,10 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main\dllmain.cpp" />
+    <ClCompile Include="Main\Setup\Interfaces\Interfaces.cpp" />
     <ClCompile Include="Main\Utilities\Console\Logging.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Includes\MainIncludes.h" />
+    <ClInclude Include="Main\SDK\Classes\ClientClass.hpp" />
+    <ClInclude Include="Main\SDK\Classes\RecvProps.hpp" />
+    <ClInclude Include="Main\SDK\Interfaces\IBaseClientDLL.h" />
+    <ClInclude Include="Main\Setup\Interfaces\Interfaces.h" />
     <ClInclude Include="Main\Utilities\Console\Logging.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

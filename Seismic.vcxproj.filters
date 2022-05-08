@@ -24,12 +24,27 @@
     <ClCompile Include="Main\Utilities\Console\Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main\Setup\Interfaces\Interfaces.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Includes\MainIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Main\Utilities\Console\Logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\Setup\Interfaces\Interfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Classes\ClientClass.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Classes\RecvProps.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IBaseClientDLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
