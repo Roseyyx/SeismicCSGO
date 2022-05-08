@@ -23,8 +23,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main\MainIncludes.h">
-      <Filter>Source Files\Main</Filter>
+    <ClInclude Include="Main\Includes\MainIncludes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
