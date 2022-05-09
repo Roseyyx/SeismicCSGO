@@ -330,10 +330,10 @@ std::filesystem::path Config::GetWorkingPath()
 	std::filesystem::path fsWorkingPath;
 
 	// get path to Appdata Roaming
-	if (PWSTR pszPathToRoaming; SUCCEEDED(SHGetKnownFolderPath(FOLDERID_Documents, 0UL, nullptr, &pszPathToRoaming)))
+	if (PWSTR pszPathToRoaming; SUCCEEDED(SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0UL, nullptr, &pszPathToRoaming)))
 	{
 		fsWorkingPath.assign(pszPathToRoaming);
-		fsWorkingPath.append(".cfg");
+		fsWorkingPath.append("Seismic");
 		CoTaskMemFree(pszPathToRoaming);
 	}
 

@@ -36,7 +36,7 @@
 #define SEH_START try {
 #define SEH_END } catch (const std::exception& ex) {		\
 	Console::PushConsoleColor(FOREGROUND_INTENSE_RED);			\
-	Console::Print(std::format("Console Error", "{}", ex.what()));	\
+	Console::Print("Console Error", std::format("{}", ex.what()));	\
 	Console::PopConsoleColor();									\
 	SEH_CATCH }
 #pragma endregion
@@ -64,6 +64,20 @@ namespace Console {
 		// print to console
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSE_GREEN);
 		std::cout << "[" + Attribute + "] ";
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wConsoleColor);
+		if constexpr (sizeof...(argList) > 0)
+			std::cout << std::vformat(szText, std::make_format_args(argList...)) << std::endl;
+		else
+			std::cout << szText << std::endl;
+	}
+
+	template <typename ... Args_t>
+	void SettingUp( const std::string_view szText, const Args_t& ... argList)
+	{
+
+		// print to console
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSE_CYAN);
+		std::cout << "[Setting up Phase] ";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wConsoleColor);
 		if constexpr (sizeof...(argList) > 0)
 			std::cout << std::vformat(szText, std::make_format_args(argList...)) << std::endl;

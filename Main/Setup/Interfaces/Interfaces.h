@@ -4,42 +4,34 @@
 #include <string>
 #include <stdexcept>
 
-// Include Console
-#include "../../Utilities/Console/Logging.h"
-
-// Include Memory Functions
-#include "../../Utilities/Memory/Memory.h"
+#include "../../SDK/Classes/Convar.h"
 
 // SDK Interfaces Includes
 #include "../../SDK/Interfaces/IBaseClientDLL.h"
+#include "../../SDK/Interfaces/IClientEntityList.h"
+#include "../../SDK/Interfaces/INetChannel.h"
+#include "../../SDK/Interfaces/IEngineClient.h"
+#include "../../SDK/Interfaces/IEngineTrace.h"
+#include "../../SDK/Interfaces/IInput.h"
+#include "../../SDK/Interfaces/IVModelInfo.h"
 
+class CInterfaceRegister
+{
+public:
+	InstantiateInterfaceFn	pCreateFn;		//0x0
+	const char* szName;			//0x4
+	CInterfaceRegister* pNext;			//0x8
+};
 
 namespace Interfaces {
-
-	template<typename T>
-	__forceinline T GetInterface(const char* szModuleName, const char* szInterfaceName) {
-		auto ModuleHandle = GetModuleHandleA(szModuleName);
-		if (!ModuleHandle)
-			return nullptr;
-
-		auto CreateInterfaceFN = reinterpret_cast<T(*)(const char*, int*)>(GetProcAddress(ModuleHandle, ("CreateInterface")));
-		if (!CreateInterfaceFN)
-			return nullptr;
-		
-		auto Result = reinterpret_cast<T>(CreateInterfaceFN(szInterfaceName, nullptr));
-
-		if (!Result) {
-			Console::Print("Interface Error", "Failed to Capture {} as {}", std::string(szModuleName), std::string(szInterfaceName));
-			return nullptr;
-		}
-		Console::Print("Interface Info", "Captured {} as {}", std::string(szModuleName), std::string(szInterfaceName));
-
-		return Result;
-	}
-	
 	bool Setup();	
+	template <typename T>
+	T* Capture(const std::string_view szModuleName, const std::string_view szInterface);
 
-	// Prefixes
-
-	inline IBaseClientDll* Client{};
+	inline IBaseClientDll*			Client;
+	inline IClientEntityList*		EntityList;
+	inline IEngineClient*			Engine;
+	inline IEngineTrace*			EngineTrace;
+	inline IInput*					Input;
+	inline IVModelInfo*				ModelInfo;
 }

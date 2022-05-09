@@ -7,6 +7,7 @@
 #include "Utilities/Console/Logging.h"
 #include "Setup/Config/Config.h"
 #include "Utilities/Netvar/NetvarManager.h"
+#include "Setup/Hooks/Hooking.h"
 
 DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 	try {
@@ -20,15 +21,21 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 		Console::Print("Starting Phase", "Console Attached, Welcome [user]!");
 
 		// Interfaces Setup
-		Console::Print("Setting up Phase", "Setting Up Interfaces");
+		Console::SettingUp("Setting Up Interfaces");
 		if (Interfaces::Setup())
-			Console::Print("Setting up Phase", "Interfaces Setup Successful");
+			Console::SettingUp("Interfaces Setup Successful");
 
 		// Netvars Setup
-		Console::Print("Setting up Phase", "Setting Up Netvars");
+		Console::SettingUp("Setting Up Netvars");
 		if (CNetvarManager::Get().Setup("netvars.Seismic"))
-			Console::Print("Setting up Phase", "Netvars Setup Successful");
-		Console::Print("Setting up Phase", "found [{:d}] props in [{:d}] tables", CNetvarManager::Get().iStoredProps, CNetvarManager::Get().iStoredTables);
+			Console::SettingUp("Netvars Setup Successful");
+		Console::SettingUp("found [{:d}] props in [{:d}] tables", CNetvarManager::Get().iStoredProps, CNetvarManager::Get().iStoredTables);
+
+		Interfaces::Engine->ExecuteClientCmd("clear");
+
+		Console::SettingUp("Setting Up Hooks");
+		if (Hooking::Setup())
+			Console::SettingUp("Hooking Setup Successful");
 	
 		if (!Config::Setup("main.cfg"))
 		{
@@ -39,6 +46,8 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 		}
 		else
 			Console::Print("Config Info", "default config loaded");
+
+
 	}
 	catch (const std::exception& error) {
 		FreeLibraryAndExitThread(static_cast<HMODULE>(lpParameter), EXIT_FAILURE);
@@ -49,7 +58,11 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 DWORD WINAPI OnDllDetach(LPVOID lpParameter) {
 	while (!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+	Hooking::Restore();
+
 	Console::Detach();
+	
 	FreeLibraryAndExitThread((HMODULE)lpParameter, EXIT_SUCCESS);
 }
 

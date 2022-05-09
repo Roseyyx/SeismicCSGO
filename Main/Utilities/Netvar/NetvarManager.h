@@ -22,7 +22,14 @@
 #include "../../SDK/DataTypes/datatable.h"
 
 #pragma region NetverDefinitons
-#define NetvarVariable(Type, szFunctionName, szNetvarName) NetvarOffset(Type, szFunctionName, szNetVarName, 0U)
+#define NetvarOffset( Type, szFunctionName, szNetVar, uAdditional )								\
+	[[nodiscard]] std::add_lvalue_reference_t<Type> szFunctionName()										\
+	{																										\
+		static constexpr FNV1A_t uHash = FNV1A::HashConst(szNetVar);										\
+		static std::uintptr_t uOffset = CNetvarManager::Get().mapProps[uHash].uOffset;						\
+		return *(std::add_pointer_t<Type>)(reinterpret_cast<std::uintptr_t>(this) + uOffset + uAdditional);	\
+	}
+#define NetvarVariable(Type, szFunctionName, szNetVar) NetvarOffset(Type, szFunctionName, szNetVar, 0U)
 #pragma endregion
 
 class CRecvPropHook {
