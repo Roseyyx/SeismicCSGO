@@ -7,6 +7,9 @@
 // Include Console
 #include "../../Utilities/Console/Logging.h"
 
+// Include Memory Functions
+#include "../../Utilities/Memory/Memory.h"
+
 // SDK Interfaces Includes
 #include "../../SDK/Interfaces/IBaseClientDLL.h"
 
@@ -29,7 +32,6 @@ namespace Interfaces {
 			Console::Print("Interface Error", "Failed to Capture {} as {}", std::string(szModuleName), std::string(szInterfaceName));
 			return nullptr;
 		}
-		
 		Console::Print("Interface Info", "Captured {} as {}", std::string(szModuleName), std::string(szInterfaceName));
 
 		return Result;
@@ -39,5 +41,5 @@ namespace Interfaces {
 
 	// Prefixes
 
-	inline IBaseClientDLL* Client{};
+	inline IBaseClientDll* Client{};
 }

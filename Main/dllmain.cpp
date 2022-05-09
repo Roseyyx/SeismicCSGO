@@ -5,6 +5,8 @@
 
 #include "Setup/Interfaces/Interfaces.h"
 #include "Utilities/Console/Logging.h"
+#include "Setup/Config/Config.h"
+#include "Utilities/Netvar/NetvarManager.h"
 
 DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 	try {
@@ -23,9 +25,20 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 			Console::Print("Setting up Phase", "Interfaces Setup Successful");
 
 		// Netvars Setup
-		//Console::Print("Setting up Phase", "Setting Up Netvars");
-		//if (Netvars::Setup())
-		//	Console::Print("Setting up Phase", "Netvars Setup Successful");
+		Console::Print("Setting up Phase", "Setting Up Netvars");
+		if (CNetvarManager::Get().Setup("netvars.Seismic"))
+			Console::Print("Setting up Phase", "Netvars Setup Successful");
+		Console::Print("Setting up Phase", "found [{:d}] props in [{:d}] tables", CNetvarManager::Get().iStoredProps, CNetvarManager::Get().iStoredTables);
+	
+		if (!Config::Setup("main.cfg"))
+		{
+			// this error is not critical, only show that
+			Console::PushConsoleColor(FOREGROUND_RED);
+			Console::Print("Setting up Error", "Failed setup and /or load default configuration");
+			Console::PopConsoleColor();
+		}
+		else
+			Console::Print("Config Info", "default config loaded");
 	}
 	catch (const std::exception& error) {
 		FreeLibraryAndExitThread(static_cast<HMODULE>(lpParameter), EXIT_FAILURE);

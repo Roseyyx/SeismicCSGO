@@ -10,7 +10,7 @@
 
 #include "../../Includes/MainIncludes.h"
 
-#pragma region logging_console_colors
+#pragma region ConsoleLogColors
 #define FOREGROUND_WHITE		    (FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN)
 #define FOREGROUND_YELLOW       	(FOREGROUND_RED | FOREGROUND_GREEN)
 #define FOREGROUND_CYAN		        (FOREGROUND_BLUE | FOREGROUND_GREEN)
@@ -26,7 +26,7 @@
 #define FOREGROUND_INTENSE_MAGENTA	(FOREGROUND_MAGENTA | FOREGROUND_INTENSITY)
 #pragma endregion
 
-#pragma region logging_exception_handling
+#pragma region ConsoleLogErrorHandling
 #ifdef _DEBUG
 #define SEH_CATCH _RPT0(_CRT_ERROR, ex.what());
 #else
@@ -36,7 +36,7 @@
 #define SEH_START try {
 #define SEH_END } catch (const std::exception& ex) {		\
 	Console::PushConsoleColor(FOREGROUND_INTENSE_RED);			\
-	Console::Print(std::format("[error] {}", ex.what()));	\
+	Console::Print(std::format("Console Error", "{}", ex.what()));	\
 	Console::PopConsoleColor();									\
 	SEH_CATCH }
 #pragma endregion

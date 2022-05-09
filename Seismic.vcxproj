@@ -20,16 +20,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main\dllmain.cpp" />
+    <ClCompile Include="Main\Setup\Config\Config.cpp" />
     <ClCompile Include="Main\Setup\Interfaces\Interfaces.cpp" />
     <ClCompile Include="Main\Utilities\Console\Logging.cpp" />
+    <ClCompile Include="Main\Utilities\Netvar\NetvarManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Includes\MainIncludes.h" />
-    <ClInclude Include="Main\SDK\Classes\ClientClass.hpp" />
-    <ClInclude Include="Main\SDK\Classes\RecvProps.hpp" />
+    <ClInclude Include="Main\SDK\Classes\Entity.h" />
+    <ClInclude Include="Main\SDK\DataTypes\datamap.h" />
+    <ClInclude Include="Main\SDK\DataTypes\datatable.h" />
+    <ClInclude Include="Main\SDK\Hashes\FNV1A.h" />
     <ClInclude Include="Main\SDK\Interfaces\IBaseClientDLL.h" />
+    <ClInclude Include="Main\SDK\Interfaces\IClientEntityList.h" />
+    <ClInclude Include="Main\Setup\Config\Config.h" />
     <ClInclude Include="Main\Setup\Interfaces\Interfaces.h" />
     <ClInclude Include="Main\Utilities\Console\Logging.h" />
+    <ClInclude Include="Main\Utilities\Memory\Memory.h" />
+    <ClInclude Include="Main\Utilities\Netvar\NetvarManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -85,6 +93,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\arty\Desktop\CSGO\SeismicCSGO\Dependencies\json;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
