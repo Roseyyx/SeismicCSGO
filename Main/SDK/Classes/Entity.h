@@ -397,6 +397,8 @@ public:
 class CBaseEntity : public IClientEntity {
 public:
 	NetvarVariable(int, GetLifeState, "CBasePlayer->m_lifeState");
+	NetvarVariable(int, GetHealth, "CBasePlayer->m_iHealth");
+	NetvarVariable(int, GetTeam, "CBaseEntity->m_iTeamNum");
 
 	inline bool IsAlive() {
 		return (this->GetLifeState() == LIFE_ALIVE);

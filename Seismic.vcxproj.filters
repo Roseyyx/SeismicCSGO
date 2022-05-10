@@ -60,6 +60,9 @@
     <ClCompile Include="Main\SDK\Classes\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main\Features\AimSystem\Ragebot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Includes\MainIncludes.h">
@@ -291,6 +294,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Main\SDK\Interfaces\IInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\Features\AimSystem\Ragebot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,6 +25,7 @@
     <ClCompile Include="Dependencies\minhook\hook.c" />
     <ClCompile Include="Dependencies\minhook\trampoline.c" />
     <ClCompile Include="Main\dllmain.cpp" />
+    <ClCompile Include="Main\Features\AimSystem\Ragebot.cpp" />
     <ClCompile Include="Main\SDK\Classes\Entity.cpp" />
     <ClCompile Include="Main\SDK\Hashes\crc32.cpp" />
     <ClCompile Include="Main\Setup\Config\Config.cpp" />
@@ -77,6 +78,7 @@
     <ClInclude Include="Dependencies\minhook\hde\table64.h" />
     <ClInclude Include="Dependencies\minhook\minhook.h" />
     <ClInclude Include="Dependencies\minhook\trampoline.h" />
+    <ClInclude Include="Main\Features\AimSystem\Ragebot.h" />
     <ClInclude Include="Main\Includes\Definitions.h" />
     <ClInclude Include="Main\Includes\Globals.h" />
     <ClInclude Include="Main\Includes\MainIncludes.h" />
