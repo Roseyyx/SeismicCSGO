@@ -9,9 +9,26 @@ bool Interfaces::Setup() {
 	Engine = Capture<IEngineClient>("engine.dll", "VEngineClient");
 	EngineTrace = Capture<IEngineTrace>("engine.dll", "EngineTraceClient");
 	ModelInfo = Capture<IVModelInfo>("engine.dll", "VModelInfoClient");
+	Convar = Capture<IConVar>("vstdlib.dll", "VEngineCvar");
+	Surface = Capture<ISurface>("vguimatsurface.dll", "VGUI_Surface");
+	PhysicsProps = Capture<IPhysicsSurfaceProps>("vphysics.dll", "VPhysicsSurfaceProps");
+	MaterialSystem = Capture<IMaterialSystem>("materialsystem.dll", "VMaterialSystem");
+	GameTypes = Capture<IGameTypes>("matchmaking.dll", "VENGINE_GAMETYPES_VERSION");
 	
 	Input = *reinterpret_cast<IInput**>(Memory::FindPattern("client.dll", "B9 ? ? ? ? F3 0F 11 04 24 FF 50 10") + 0x1); // @note: or address of some indexed input function in chlclient class (like IN_ActivateMouse, IN_DeactivateMouse, IN_Accumulate, IN_ClearStates) + 0x1 (jmp to m_pInput)
 	if (Input == nullptr)
+		return false;
+
+	ClientMode = **reinterpret_cast<IClientModeShared***>(Memory::GetVFunc<std::uintptr_t>(Client, 10) + 0x5); // get it from CHLClient::HudProcessInput
+	if (ClientMode == nullptr)
+		return false;
+
+	Globals = **reinterpret_cast<IGlobalVarsBase***>(Memory::GetVFunc<std::uintptr_t>(Client, 11) + 0xA); // get it from CHLClient::HudUpdate @xref: "(time_int)", "(time_float)"
+	if (Globals == nullptr)
+		return false;
+
+	WeaponSystem = *reinterpret_cast<IWeaponSystem**>(Memory::FindPattern("client.dll", "8B 35 ? ? ? ? FF 10 0F B7 C0") + 0x2);
+	if (WeaponSystem == nullptr)
 		return false;
 
 	return true;

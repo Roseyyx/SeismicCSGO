@@ -9,6 +9,8 @@
 
 #include "../../Utilities/Console/Logging.h"
 
+#include "../../Features/AimSystem/Ragebot.h"
+
 
 bool Hooking::Setup() {
 	SEH_START
@@ -48,6 +50,8 @@ static void STDCALL CreateMove(int nSequenceNumber, float flInputSampleFrametime
 	Globals::cmd = cmd;
 
 	CBaseEntity* LocalPlayer = Globals::LocalPlayer = CBaseEntity::GetLocalPlayer();
+
+	Ragebot::Get().RageAimbot(cmd);
 }
 
 __declspec(naked) void FASTCALL Hooking::hkCreateMoveProxy([[maybe_unused]] IBaseClientDll* thisptr, [[maybe_unused]] int edx, [[maybe_unused]] int nSequenceNumber, [[maybe_unused]] float flInputSampleFrametime, [[maybe_unused]] bool bIsActive)

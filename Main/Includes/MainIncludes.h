@@ -7,6 +7,7 @@
 #include <exception>
 #include <cstdint>
 #include <thread>
+#include <cassert>
 
 // Other Imports
 #include "../Utilities/Memory/Memory.h"

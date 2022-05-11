@@ -31,8 +31,6 @@ DWORD WINAPI OnDllAttach(LPVOID lpParameter) {
 			Console::SettingUp("Netvars Setup Successful");
 		Console::SettingUp("found [{:d}] props in [{:d}] tables", CNetvarManager::Get().iStoredProps, CNetvarManager::Get().iStoredTables);
 
-		Interfaces::Engine->ExecuteClientCmd("clear");
-
 		Console::SettingUp("Setting Up Hooks");
 		if (Hooking::Setup())
 			Console::SettingUp("Hooking Setup Successful");

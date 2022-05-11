@@ -63,6 +63,12 @@
     <ClCompile Include="Main\Features\AimSystem\Ragebot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main\Features\AimSystem\Autowall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\SDK\Classes\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Includes\MainIncludes.h">
@@ -297,6 +303,51 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Main\Features\AimSystem\Ragebot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\Features\AimSystem\Autowall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Classes\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IConvar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IClientModeShared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\ISurface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IPhysicsSurfaceProps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IMaterialSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IMatRenderContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IRefCount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\ITexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IMaterial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\DataTypes\KeyValues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IGlobalsVarsBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IGameTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\SDK\Interfaces\IWeaponSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
